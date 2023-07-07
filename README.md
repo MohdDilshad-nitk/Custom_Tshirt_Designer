@@ -1,6 +1,6 @@
 # Customizable T-Shirt Website
 
-This project is a website that allows users to customize the color and logo of a 3D T-shirt model. The website is built using Three.js, React, and the OpenAI API.
+This project is a website that allows users to customize the color and logo of a 3D T-shirt model. The website is built using Three.js, React,Node,Express and the OpenAI API.
 
 ## Features
 
