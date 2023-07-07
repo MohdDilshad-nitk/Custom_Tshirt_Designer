@@ -33,16 +33,91 @@ const Customizer = () => {
   const generateTabContent = ()=>{
     switch(activeEditorTab){
       case "aipicker":
-        return <AIPicker />;
+        return <AIPicker 
+          prompt = {prompt}
+          setPrompt = {setPrompt}
+          generatingImg = {generatingImg}
+          handleSubmit = {handleSubmit}
+        />;
       case "colorpicker":
         return <ColorPicker />;
       case "filepicker":
-        return <FilePicker />;
+        return <FilePicker 
+          file = {file}
+          setFile ={setFile}
+          readFile = {readFile}
+        />;
       default:
         return <></>
     }
   }
 
+  const handleSubmit = async (type) => {
+    if(!prompt) return alert("Please enter a prompt");
+
+    try {
+      setGeneratingImg(true);
+
+      const response = await fetch('http://localhost:8080/api/v1/dalle', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          prompt,
+        })
+      })
+
+      const data = await response.json();
+
+      handleDecals(type, `data:image/png;base64,${data.photo}`)
+    } catch (error) {
+      alert(error)
+    } finally {
+      setGeneratingImg(false);
+      setActiveEditorTab("");
+    }
+  }
+
+
+  const handleDecals = (type, result) => {
+    const decalType = DecalTypes[type];
+
+    state[decalType.stateProperty] = result;
+
+    if(!activeFilterTab[decalType.filterTab]) {
+      handleActiveFilterTab(decalType.filterTab)
+    }
+  }
+
+  const handleActiveFilterTab = (tabName) => {
+    switch (tabName) {
+      case "logoShirt":
+          state.isLogoTexture = !activeFilterTab[tabName];
+        break;
+      case "stylishShirt":
+          state.isFullTexture = !activeFilterTab[tabName];
+        break;
+      default:
+        state.isLogoTexture = true;
+        state.isFullTexture = false;
+        break;
+    }
+
+    setActiveFilterTab((prevState) => {
+      return {
+        ...prevState,
+        [tabName]: !prevState[tabName],
+      };
+    })
+  }
+
+  const readFile = (type)=>{
+    reader(file).then((result) => {
+      handleDecals(type,result);
+      setActiveEditorTab("");
+    })
+  }
 
   return (
     <AnimatePresence>
@@ -89,9 +164,17 @@ const Customizer = () => {
               key={tab.name}
               tab = {tab}
               isFilterTab
-              isActiveTab=""
-              handleClick = {() => {}}
+              isActiveTab={activeFilterTab[tab.name]}
+              handleClick = {() => handleActiveFilterTab(tab.name)}
             />))}
+
+            <button className='download-btn' onClick={downloadCanvasToImage}>
+                  <img
+                    src={download}
+                    alt='download_image'
+                    className='w-3/5 h-3/5 object-contain'
+                  />
+            </button>
 
             
             </motion.div>
