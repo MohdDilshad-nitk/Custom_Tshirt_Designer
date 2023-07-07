@@ -36,6 +36,23 @@ Replace `your-api-key` with your actual OpenAI API key.
 
 Once the development server is running, open your web browser and navigate to `http://localhost:5173` or the link provided by the vite in the terminal to access the website. From there, users can interact with the 3D T-shirt model, customize the color, and upload or generate images for the logo.
 
+##Screenshots
+
+###Home Page
+<img width="912" alt="image" src="https://github.com/MohdDilshad-nitk/Custom_Tshirt_Designer/assets/97335106/b0691772-fbf5-44a0-9678-fa8c1e77a82f">
+
+###Color Picker
+![image](https://github.com/MohdDilshad-nitk/Custom_Tshirt_Designer/assets/97335106/93ab24f9-05c2-4a35-bc95-f1e23ad53004)
+
+###File Picker
+![image](https://github.com/MohdDilshad-nitk/Custom_Tshirt_Designer/assets/97335106/715001d4-97e1-4bc7-838d-5f6162770980)
+
+
+###AI Prompt
+![image](https://github.com/MohdDilshad-nitk/Custom_Tshirt_Designer/assets/97335106/d44ea4bc-5871-45a5-98d2-57cac2fdef61)
+
+
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
