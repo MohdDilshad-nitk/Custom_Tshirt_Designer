@@ -34,7 +34,7 @@ Replace `your-api-key` with your actual OpenAI API key.
 
 ## Usage
 
-Once the development server is running, open your web browser and navigate to `http://localhost:3000` to access the website. From there, users can interact with the 3D T-shirt model, customize the color, and upload or generate images for the logo.
+Once the development server is running, open your web browser and navigate to `http://localhost:5173` or the link provided by the vite in the terminal to access the website. From there, users can interact with the 3D T-shirt model, customize the color, and upload or generate images for the logo.
 
 ## Contributing
 
